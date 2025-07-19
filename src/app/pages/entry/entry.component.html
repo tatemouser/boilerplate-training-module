@@ -1,8 +1,28 @@
-<!-- entry.component.html -->
 <div class="entry-container">
     <h1>Welcome to the page</h1>
+
     <form>
-        <label for="entryInput">click to login:</label>
+        <label>
+            <input type="radio" name="mode" [checked]="!isSignup" (change)="isSignup = false"> Login
+        </label>
+        <label>
+            <input type="radio" name="mode" [checked]="isSignup" (change)="isSignup = true"> Signup
+        </label>
+
+        <div>
+            <label for="username">Username:</label>
+            <input id="username" type="text" [(ngModel)]="username" name="username">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input id="password" type="password" [(ngModel)]="password" name="password">
+        </div>
+
+        <div *ngIf="isSignup">
+            <label for="repeatPassword">Repeat Password:</label>
+            <input id="repeatPassword" type="password" [(ngModel)]="repeatPassword" name="repeatPassword">
+        </div>
+
         <button type="button" (click)="onSubmit()">Submit</button>
     </form>
 </div>
